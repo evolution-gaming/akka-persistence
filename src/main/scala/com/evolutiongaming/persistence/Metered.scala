@@ -9,8 +9,7 @@ trait Metered {
   def registry: MetricRegistry
 
   def metricPrefix: String
-
-
+  
   def time[T](name: String)(f: => Future[T])(implicit ec: ExecutionContext): Future[T] = {
     val timer = registry.timer(metricPrefix + name)
     timer.timeFuture(f)

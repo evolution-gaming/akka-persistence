@@ -14,7 +14,6 @@ trait MeteredJournal extends AsyncWriteJournal with Metered with LazyLogging {
   def registry = PersistentMetrics.AkkaRegistry
   def metricPrefix = "persistence.journal."
 
-
   abstract override def asyncWriteMessages(messages: Seq[AtomicWrite]) = {
 
     def data = messages map { message =>
