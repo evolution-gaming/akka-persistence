@@ -7,9 +7,8 @@ object Dependencies {
     val Actor = "com.typesafe.akka" %% "akka-actor" % akkaVersion
     val Cluster = "com.typesafe.akka" %% "akka-cluster" % akkaVersion % Compile
     val ClusterSharding = "com.typesafe.akka" %% "akka-cluster-sharding" % akkaVersion % Compile
-    val TestKit = "com.typesafe.akka" %% "akka-testkit" % akkaVersion
 
-    val All = Seq(Actor, Cluster, ClusterSharding, TestKit)
+    val All = Seq(Actor, Cluster, ClusterSharding)
   }
 
   private val metricsScalaVersion = "3.5.9"
