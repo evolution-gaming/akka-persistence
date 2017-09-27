@@ -158,13 +158,13 @@ trait PersistentActor extends akka.persistence.PersistentActor with DiagnosticAc
 
   protected def msgType(x: Any): Nel[String] = Nel(x.getClass.simpleName)
 
-  def shouldSaveSnapshot: Boolean = {
+  def shouldSaveSnapshot(seqNr: Long = lastSequenceNr): Boolean = {
 
     def timestampCheck = {
       lastSnapshotTimestamp + persistenceConfig.saveSnapshotNotOftenThan.toMillis <= Platform.currentTime
     }
 
-    def seqNrCheck = lastSequenceNr % persistenceConfig.saveSnapshotOncePer == 0
+    def seqNrCheck = seqNr % persistenceConfig.saveSnapshotOncePer == 0
 
     seqNrCheck && timestampCheck
   }
